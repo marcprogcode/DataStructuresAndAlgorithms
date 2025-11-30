@@ -1,0 +1,29 @@
+# Visual Studio 2019/2022 cache/options directory
+.vs/
+# User-specific project files
+*.vcxproj.user
+*.user
+*.suo
+*.opensdf
+*.sdf
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleasePublic/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+# Tooling
+_UpgradeReport_Files/
+# Backup files
+*.bak
+*.tmp
+*.log
+DataStru*/
