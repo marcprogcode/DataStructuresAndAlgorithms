@@ -2,33 +2,33 @@
 // All of the recursive implementations are slower and use much more memory (O(1) vs O(n)) but they are more intuitive and faster to code. Prefer iterative over recursive.
 // The insert at n position and delete node has split traversal optimization using head/tail access based on the size of the list.
 
-// TODO: TYPE AGNOSTIC IMPLEMENTATION
 #include <iostream>
 
+template <typename T> // Type-agnostic implementation.
 struct Node {
-	int data;
-	Node* next;
-	Node* prev;
+	T data;
+	Node<T>* next;
+	Node<T>* prev;
 };
-
+template <typename T> // Type-agnostic implementation.
 struct DoublyLinkedList {
-	Node* head = nullptr;
-	Node* tail = nullptr;
+	Node<T>* head = nullptr;
+	Node<T>* tail = nullptr;
 	int size = 0;
 	// Deconstructor de-allocates memory from the heap after deletion of the list
 	~DoublyLinkedList() {
-		Node* current = head;
+		Node<T>* current = head;
 		// Traverse through the list
 		while (current != nullptr) {
-			Node* temp1;
+			Node<T>* temp1;
 			temp1 = current; // Saves the location of the current node
 			current = current->next; // Traverses to the next node
 			delete temp1; // Free the memory of this iteration's node
 		}
 	}
 
-	void insert(int x, int n) {
-		Node* newNode = new Node(); // Allocates space for new node
+	void insert(T x, int n) {
+		Node<T>* newNode = new Node<T>(); // Allocates space for new node
 
 		newNode->data = x;
 
@@ -51,7 +51,7 @@ struct DoublyLinkedList {
 			size++;
 			return;
 		}
-		Node* oldNode = head;
+		Node<T>* oldNode = head;
 		// We check if the number is closer to the start or to the end and then approach it by whatever side is closer
 		if (n <= size/2) {
 			for (int i = 1; i < n - 1; i++) {
@@ -74,7 +74,7 @@ struct DoublyLinkedList {
 	void deleteNode(int n) {
 		// If deleting the first node, point head to next, new head's prev pointer to null, then de-allocate memory for deleted node
 		if (n == 1) {
-			Node* temp = head;
+			Node<T>* toDelete = head;
 			head = head->next;
 			if (head) {
 				head->prev = nullptr;
@@ -82,13 +82,13 @@ struct DoublyLinkedList {
 			else {
 				tail = nullptr;
 			}
-			delete temp;
+			delete toDelete;
 			size--;
 			return;
 		}
 		// If deleting the last node, point tail to prev, new tail's next pointer to null, then de-allocate memory for deleted node
 		if (n == size) {
-			Node* temp = tail;
+			Node<T>* toDelete = tail;
 			tail = tail->prev;
 			if (tail) {
 				tail->next = nullptr;
@@ -96,12 +96,12 @@ struct DoublyLinkedList {
 			else {
 				head = nullptr;
 			}
-			delete temp;
+			delete toDelete;
 			size--;
 			return;
 		}
 		// We check if the number is closer to the start or to the end and then approach it by whatever side is closer
-		Node* toDelete = nullptr;
+		Node<T>* toDelete = nullptr;
 		if (n <= size / 2) {
 			toDelete = head;
 			for (int i = 1; i < n; i++) {
@@ -120,41 +120,41 @@ struct DoublyLinkedList {
 		delete toDelete;
 		size--;
 	}
-	void insertAtHead(int x) {
+	void insertAtHead(T x) {
 		// If added to the front, point next to (old)head then head to new node, then prev to null as it is first element
-		Node* temp1 = new Node();
-		temp1->data = x;
-		temp1->next = head;
-		temp1->prev = nullptr;
-		if (head) head->prev = temp1; // If a previous head node existed, then point its prev towards new node
-		if (!head) tail = temp1; // Else, this node is the first node so it will be both head and tail
-		head = temp1;
+		Node<T>* newNode = new Node<T>();
+		newNode->data = x;
+		newNode->next = head;
+		newNode->prev = nullptr;
+		if (head) head->prev = newNode; // If a previous head node existed, then point its prev towards new node
+		if (!head) tail = newNode; // Else, this node is the first node so it will be both head and tail
+		head = newNode;
 		size++;
 	}
-	void insertAtTail(int x) {
+	void insertAtTail(T x) {
 		// If added to the back, point prev to (old)tail then tail to new node, then next to null as it is last element
-		Node* temp1 = new Node();
-		temp1->data = x;
-		temp1->next = nullptr;
-		temp1->prev = tail;
-		if(tail) tail->next = temp1; // If a previous tail node existed, then point its next towards new node
-		if(!tail) head = temp1; // Else, this node is the first node so it will be both head and tail
-		tail = temp1;
+		Node<T>* newNode = new Node<T>();
+		newNode->data = x;
+		newNode->next = nullptr;
+		newNode->prev = tail;
+		if(tail) tail->next = newNode; // If a previous tail node existed, then point its next towards new node
+		if(!tail) head = newNode; // Else, this node is the first node so it will be both head and tail
+		tail = newNode;
 		size++;
 	}
 	
 	void reverseList() {
 		if (head == nullptr) return;
 
-		Node* current = head;
-		Node* temp = nullptr;
+		Node<T>* current = head;
+		Node<T>* prevNode = nullptr;
 		// Switch tail and head
 		tail = head;
 		// For each element in the list, switch its prev and next pointers
 		while (current) {
-			temp = current->prev; // Store the current node's prev pointer
+			prevNode = current->prev; // Store the current node's prev pointer
 			current->prev = current->next;
-			current->next = temp;
+			current->next = prevNode;
 
 			if (!current->prev) { // If the previous node is null, it must be the head node
 				head = current;
@@ -164,32 +164,32 @@ struct DoublyLinkedList {
 		
 	}
 	void print() {
-		Node* temp1 = head;
+		Node<T>* traverser = head;
 		std::cout << "List is: ";
 		// Traverse the list printing the data on each node
-		while (temp1 != nullptr) {
-			std::cout << temp1->data << " ";
-			temp1 = temp1->next;
+		while (traverser != nullptr) {
+			std::cout << traverser->data << " ";
+			traverser = traverser->next;
 		}
 		std::cout << std::endl;
 	}
 	void reversePrint() {
-		Node* temp1 = tail;
+		Node<T>* traverser = tail;
 		std::cout << "Reverse list is: ";
 		// Traverse the list backwards starting at tail printing the data on each node
-		while (temp1 != nullptr) {
-			std::cout << temp1->data << " ";
-			temp1 = temp1->prev;
+		while (traverser != nullptr) {
+			std::cout << traverser->data << " ";
+			traverser = traverser->prev;
 		}
 		std::cout << std::endl;
 	}
-	void recursivePrint(Node* node) {
+	void recursivePrint(Node<T>* node) {
 		// Traverse the list printing the data on each node
 		if (!node) return;
 		std::cout << node->data << " ";
 		recursivePrint(node->next); 
 	}
-	void recursiveReversePrint(Node* node) {
+	void recursiveReversePrint(Node<T>* node) {
 		// Traverse the list backwards starting at tail printing the data on each node
 		if (!node) return;
 		std::cout << node->data << " ";
@@ -198,8 +198,8 @@ struct DoublyLinkedList {
 };
 
 int main() {
-	DoublyLinkedList list;
-	list.insertAtHead(4); // 4
+	DoublyLinkedList<int> list;
+	list.insertAtHead(4);
 	list.print(); // List is: 4
 	list.insertAtHead(3);
 	list.print(); // List is: 3 4

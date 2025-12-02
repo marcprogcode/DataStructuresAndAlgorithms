@@ -6,7 +6,8 @@ This repository contains C++ implementations of various data structures and algo
 
 ### Linked List
 - **Singly Linked List**: A template-based implementation including insertion, deletion, reversal (iterative and recursive), and printing.
-- **Doubly Linked List**: (Under Construction)
+- **Doubly Linked List**: A template-based implementation including insertion, deletion, reversal and printing.
+- **Stack**: (Under Construction)
 
 ## Getting Started
 
@@ -17,3 +18,6 @@ This repository contains C++ implementations of various data structures and algo
 ## Requirements
 - C++ Compiler (supporting C++11 or later)
 - Visual Studio (recommended) or any other C++ IDE
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.

@@ -1,7 +1,6 @@
 // LinkedList.cpp : This file contains the 'main' function. Program execution begins and ends there.
 // All of the recursive implementations are slower and use much more memory (O(1) vs O(n)) but they are more intuitive and faster to code. Prefer iterative over recursive.
 
-// TODO: IMPLEMENT BETTER NAMES
 #include <iostream>
 
 template <typename T> // Type-agnostic implementation.
@@ -46,19 +45,20 @@ struct LinkedList {
     }
     void deleteNode(int n) {
         // If deleting the first node, point head to next, then de-allocate memory for deleted node
-        Node<T>* temp1 = head;
         if (n == 1) {
+            Node<T>* toDelete = head;
             head = head->next;
-            delete temp1;
+            delete toDelete;
             return;
         }
+        Node<T>* prevToDelete = head;
         // Traverse to the node before the position, point it to the next node after deleted, then de-allocate memory for deleted node
         for (int i = 1; i < n - 1; i++) {
-            temp1 = temp1->next;
+            prevToDelete = prevToDelete->next;
         }
-        Node<T>* temp2 = temp1->next; 
-        temp1->next = temp2->next; 
-        delete temp2;
+        Node<T>* toDelete = prevToDelete->next;
+        prevToDelete->next = toDelete->next;
+        delete toDelete;
     }
     void reverseList() {
         Node<T>* current, * prev, * next;
@@ -96,12 +96,12 @@ struct LinkedList {
         recursivePrint(p->next);
     }    
     void print() {
-        Node<T>* temp = head;
+        Node<T>* traverser = head;
         std::cout << "List is: ";
         // Traverse the list printing the data on each node
-        while (temp != nullptr) {
-            std::cout << temp->data << " ";
-            temp = temp->next;
+        while (traverser != nullptr) {
+            std::cout << traverser->data << " ";
+            traverser = traverser->next;
         }
         std::cout << std::endl;
     }
