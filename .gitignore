@@ -27,3 +27,4 @@ _UpgradeReport_Files/
 *.tmp
 *.log
 DataStru*/
+enc_temp_folder

@@ -1,5 +1,7 @@
 // LinkedList.cpp : This file contains the 'main' function. Program execution begins and ends there.
 // All of the recursive implementations are slower and use much more memory (O(1) vs O(n)) but they are more intuitive and faster to code. Prefer iterative over recursive.
+
+// TODO: IMPLEMENT BETTER NAMES
 #include <iostream>
 
 template <typename T> // Type-agnostic implementation.
@@ -8,9 +10,9 @@ struct Node{
     Node<T>* next;
 };
 
-template <typename T> // List and node shall share type.
+template <typename T> // List and node shall share type
 struct LinkedList {
-    // Deconstructor de-allocates memory from the heap after deletion of the list.
+    // Deconstructor de-allocates memory from the heap after deletion of the list
     ~LinkedList() {
         Node<T>* current;
         current = head;
@@ -23,24 +25,24 @@ struct LinkedList {
         }
     }
     void insert(typename T x, int n) {
-        Node<T>* temp1 = new Node<T>(); // Allocates space for new node
+        Node<T>* newNode = new Node<T>(); // Allocates space for new node
 
-        temp1->data = x;
-        temp1->next = nullptr;
+        newNode->data = x;
+        newNode->next = nullptr;
 
         // If added to the front, point node to head then head to new node
         if (n == 1) {
-            temp1->next = head;
-            head = temp1;
+            newNode->next = head;
+            head = newNode;
             return;
         }
         // Traverse to the node before the position, point it to the new node, then point new node to node previously in the position
-        Node<T>* temp2 = head;
+        Node<T>* oldNode = head;
         for (int i = 1; i < n - 1; i++) {
-            temp2 = temp2->next;
+            oldNode = oldNode->next;
         }
-        temp1->next = temp2->next;
-        temp2->next = temp1;
+        newNode->next = oldNode->next; // Set the next node pointer to match the old node at n
+        oldNode->next = newNode; // Set the old next node pointer to match the new node
     }
     void deleteNode(int n) {
         // If deleting the first node, point head to next, then de-allocate memory for deleted node
@@ -54,8 +56,8 @@ struct LinkedList {
         for (int i = 1; i < n - 1; i++) {
             temp1 = temp1->next;
         }
-        Node<T>* temp2 = temp1->next;
-        temp1->next = temp2->next;
+        Node<T>* temp2 = temp1->next; 
+        temp1->next = temp2->next; 
         delete temp2;
     }
     void reverseList() {
@@ -73,23 +75,24 @@ struct LinkedList {
         head = prev;
     }
     void recursiveReverseList(Node<T>* p) {
+        if (p == nullptr) return;
         if (p->next == nullptr) {
             head = p;
             return;
         }
         recursiveReverseList(p->next);
-        // After recursive call, traveling backwards
+        // After recursive call, travelling backwards
         p->next->next = p; // Set the next pointer of the next node to point towards the current node, so instead of pointing forward it points backwards
-        p->next = nullptr; // Set the next pointer of this node to point towards null (asuming it's last, but it will get overwritten if there are any more backwards steps)
+        p->next = nullptr; // Set the next pointer of this node to point towards null (assuming it's last, but it will get overwritten if there are any more backwards steps)
     }
     void recursiveReversePrint(Node<T>* p) {
         if (p == nullptr) return;
         recursiveReversePrint(p->next);        
-        std::cout << p->data << " "; // After recursive call, traveling backwards
+        std::cout << p->data << " "; // After recursive call, travelling backwards
     }
     void recursivePrint(Node<T>* p) {
         if (p == nullptr) return;
-        std::cout << p->data << " "; // Before recursive call, traveling forwards
+        std::cout << p->data << " "; // Before recursive call, travelling forwards
         recursivePrint(p->next);
     }    
     void print() {
