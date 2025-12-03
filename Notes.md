@@ -18,7 +18,7 @@ You have to provide a size beforehand that will allocate memory to store x copy 
 If you exceed this limit you have to copy the data to a new (usually 2x the size) array.
 
 **Calculating the position of an element is simple:**
-`Location of first + x<sub>n</sub> * datasize`
+`Location of first + index * datasize`
 
 **Memory:**
 *   Fixed
