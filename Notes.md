@@ -78,3 +78,24 @@ To add an item or remove, you must update pointers on *both* links (prev and nex
 *   Add element at start/end (with tail pointer): **O(1)**
 
 **Memory:** No unused memory (blocks), but higher overhead per node because you store 2 pointers instead of 1.
+
+## Stack (ADT)
+```text
+    +     +
+    |     |  
+    +-----+
+    |  1  |  <-- Top
+    +-----+
+    |  5  |
+    +-----+
+```
+A stack is an abstract data type that follows the **last-in-first-out (LIFO)**. This means that elements can only be inserted or deleted from the top.
+
+**4 basic operations can be performed on a stack:**
+
+1.  **push(x):** Inserts x at the top of the stack
+2.  **pop():** Removes the element at the top
+3.  **top():** Return the element at the top
+4.  **isEmpty()**: Return true if stack is empty
+
+All of these operations have a time complexity of **O(1)**.
