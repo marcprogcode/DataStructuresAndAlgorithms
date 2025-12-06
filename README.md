@@ -8,6 +8,7 @@ This repository contains C++ implementations of various data structures and algo
 - **Singly Linked List**: A template-based implementation including insertion, deletion, reversal (iterative and recursive), and printing.
 - **Doubly Linked List**: A template-based implementation including insertion, deletion, reversal and printing.
 - **Stack**: A template-based implementation with both Linked Lists and Arrays. including push, pop, top and isEmpty. Some example algorithms such as string reversing or balanced parentheses are also implemented.
+- **Queue**: (Under construction).
 
 ## Getting Started
 
