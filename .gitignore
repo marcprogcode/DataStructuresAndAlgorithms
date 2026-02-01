@@ -28,3 +28,7 @@ _UpgradeReport_Files/
 *.log
 DataStru*/
 enc_temp_folder
+# Build artifacts
+out/
+build/
+${sourceDir}/

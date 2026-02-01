@@ -1,0 +1,1 @@
+add_executable(DoublyLinkedList DoublyLinkedList.cpp DoublyLinkedList.h)

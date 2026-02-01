@@ -13,7 +13,7 @@ struct DoublyLinkedList {
 	Node<T>* head = nullptr;
 	Node<T>* tail = nullptr;
 	int size = 0;
-	// Deconstructor de-allocates memory from the heap after deletion of the list
+	// Destructor de-allocates memory from the heap after deletion of the list
 	~DoublyLinkedList() {
 		Node<T>* current = head;
 		// Traverse through the list

@@ -1,20 +1,36 @@
-// Queue.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+#include "QueueArray.h"
+#include "QueueLinkedList.h"
 #include <iostream>
 
-int main()
-{
-    std::cout << "Hello World!\n";
+int main() {
+  QueueLinkedList<int> QueueLL;
+
+  std::cout << "Queue is: " << QueueLL.isEmpty() << std::endl;
+  QueueLL.enqueue(1);
+  QueueLL.enqueue(2);
+  QueueLL.enqueue(3);
+  QueueLL.enqueue(4);
+  std::cout << "Queue is: " << QueueLL.peek() << std::endl;
+  QueueLL.dequeue();
+  std::cout << "Queue is: " << QueueLL.peek() << std::endl;
+  QueueLL.dequeue();
+  std::cout << "Queue is: " << QueueLL.peek() << std::endl;
+  QueueLL.dequeue();
+  std::cout << "Queue is: " << QueueLL.peek() << std::endl;
+  QueueLL.dequeue();
+
+  QueueArray<int> QueueArr(10);
+  std::cout << "Queue is: " << QueueArr.isEmpty() << std::endl;
+  QueueArr.enqueue(1);
+  QueueArr.enqueue(2);
+  QueueArr.enqueue(3);
+  QueueArr.enqueue(4);
+  std::cout << "Queue is: " << QueueArr.peek() << std::endl;
+  QueueArr.dequeue();
+  std::cout << "Queue is: " << QueueArr.peek() << std::endl;
+  QueueArr.dequeue();
+  std::cout << "Queue is: " << QueueArr.peek() << std::endl;
+  QueueArr.dequeue();
+  std::cout << "Queue is: " << QueueArr.peek() << std::endl;
+  QueueArr.dequeue();
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

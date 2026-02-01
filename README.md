@@ -7,14 +7,15 @@ This repository contains C++ implementations of various data structures and algo
 ### Linked List
 - **Singly Linked List**: A template-based implementation including insertion, deletion, reversal (iterative and recursive), and printing.
 - **Doubly Linked List**: A template-based implementation including insertion, deletion, reversal and printing.
-- **Stack**: A template-based implementation with both Linked Lists and Arrays. including push, pop, top and isEmpty. Some example algorithms such as string reversing or balanced parentheses are also implemented.
-- **Queue**: (Under construction).
+- **Stack**: A template-based implementation with both Linked Lists and Arrays. Including push, pop, top and isEmpty. Some example algorithms such as string reversing or balanced parentheses are also implemented.
+- **Queue**: A template-based implementation with both Linked Lists and Arrays. Includes enqueue, dequeue, peek and isEmpty.
 
 ## Getting Started
 
-1. Open `DataStructuresAndAlgorithms.sln` in Visual Studio.
-2. Build the solution (Ctrl+Shift+B).
-3. Run the projects (F5 or Ctrl+F5).
+1. Open the `DataStructuresAndAlgorithms` folder in Visual Studio.
+2. Select the project you want to build.
+3. Build the solution (Ctrl+Shift+B).
+4. Run the project (F5 or Ctrl+F5).
 
 ## Requirements
 - C++ Compiler (supporting C++11 or later)
