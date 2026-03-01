@@ -17,7 +17,7 @@ struct StackArray {
     // elements
     if (topStack >= stackSize) {
       stackSize *= 2;
-      T *newStack = new T[stackSize]();
+      auto *newStack = new T[stackSize]();
       for (int i = 0; i < stackSize / 2; i++)
         newStack[i] = stack[i];
       delete[] stack; // Free old memory
@@ -25,11 +25,7 @@ struct StackArray {
     }
     stack[topStack] = x;
   }
-  void pop() {
-    if (topStack == -1)
-      return; // Return if stack is already empty
-    topStack--;
-  }
+  T pop() { return stack[topStack--]; }
   T top() { return stack[topStack]; }
   bool isEmpty() { return topStack == -1; }
 };

@@ -27,8 +27,8 @@ inline bool balancedParentheses(std::string str) {
     // We ignore chars that aren't parentheses
     else if (c == ')' || c == ']' || c == '}') {
       if (stack.isEmpty() || stack.top() != c)
-        return false; // Edge case: closing parenthesis without opening one first OR
-                  // closing parentheses in incorrect order
+        return false; // Edge case: closing parenthesis without opening one
+                      // first OR closing parentheses in incorrect order
       stack.pop(); // Remove the closed parenthesis from the stack
     }
   }

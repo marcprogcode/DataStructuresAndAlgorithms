@@ -1,4 +1,5 @@
 #include "../Algorithms/balancedParentheses.h"
+#include "../Algorithms/infixPostfixPrefix.h"
 #include "../Algorithms/reverseString.h"
 #include "StackArray.h"
 #include "StackLinkedList.h"
@@ -6,7 +7,7 @@
 
 int main() {
   StackArray<int> StackArr(10);
-  int testSize = 11;
+  int testSize{11};
   for (int i = 0; i < testSize; i++)
     StackArr.push(i);
   std::cout << StackArr.top() << StackArr.isEmpty();
@@ -23,5 +24,9 @@ int main() {
   std::cout << StackList.isEmpty() << std::endl;
 
   std::cout << balancedParentheses("((([text]{})))") << std::endl;
-  std::cout << reverseString("Hello!!!");
+  std::cout << reverseString("Hello!!!") << std::endl;
+  std::cout << evalPostfixExpression("2 3 * 5 4 * + 9 -") << std::endl;
+  std::cout << evalPrefixExpression("- + * 2 3 * 5 4 9") << std::endl;
+  std::cout << "2 * 3 + 5 * 4 - 9 :: 2 3 * 5 4 * + 9 - :: "
+            << infixToPostfix("2 * 3 + 5 * 4 - 9") << std::endl;
 }
