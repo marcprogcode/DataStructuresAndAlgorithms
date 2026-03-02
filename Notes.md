@@ -4,7 +4,8 @@
 
 `int A[x]` $\rightarrow$ x is the size of the array.
 
-You have to provide a size beforehand that will allocate memory to store x copies of the data type in sequence. This wastes memory on non-full list.
+You have to provide a size beforehand that will allocate memory to store x
+copies of the data type in sequence. This wastes memory on non-full list.
 
 ```text
       Memory is contiguous
@@ -16,23 +17,24 @@ You have to provide a size beforehand that will allocate memory to store x copie
  Used Data      Unused / Wasted Space
 ```
 
-If you exceed this limit you have to copy the data to a new (usually 2x the size) array.
+If you exceed this limit you have to copy the data to a new (usually 2x the
+size) array.
 
 **Calculating the position of an element is simple:**
 `Location of first + index * data_size`
 
 **Memory:**
 
-* Fixed
-* With unused space
-* Must be continuous
+- Fixed
+- With unused space
+- Must be continuous
 
 **Overall:**
 
-* Constant time to access element: **O(1)**
-* Time to insert is linear (end is O(1)): **O(n)**
-* Remove element is linear: **O(n)**
-* Add element is slow but linear: **O(n)**
+- Constant time to access element: **O(1)**
+- Time to insert is linear (end is O(1)): **O(n)**
+- Remove element is linear: **O(n)**
+- Add element is slow but linear: **O(n)**
 
 ---
 
@@ -45,20 +47,24 @@ struct Node {
 }
 ```
 
-No size limit so lists are dynamic. You create a head node that will contain data and a pointer to the next node.
+No size limit so lists are dynamic. You create a head node that will contain
+data and a pointer to the next node.
 
-**Head** $\rightarrow$ **[2 | $\cdot$]** $\rightarrow$ **[4 | $\cdot$]** $\rightarrow$ **[6 | Null]**
+**Head** $\rightarrow$ **[2 | $\cdot$]** $\rightarrow$ **[4 | $\cdot$]**
+$\rightarrow$ **[6 | Null]**
 
-To add/remove an item, you change the pointers beforehand to point towards the new element and then point to the next.
+To add/remove an item, you change the pointers beforehand to point towards the
+new element and then point to the next.
 
 To access an element you have to follow the chain to find it.
 
 **Complexity:**
 
-* Time to access elements is linear: **O(n)**
-* Time to insert, remove or add: **O(n)** (At beginning **O(1)**)
+- Time to access elements is linear: **O(n)**
+- Time to insert, remove or add: **O(n)** (At beginning **O(1)**)
 
-**Memory:** No unused memory but extra memory for pointers. Can be separated by blocks.
+**Memory:** No unused memory but extra memory for pointers. Can be separated by
+blocks.
 
 ---
 
@@ -72,25 +78,29 @@ struct Node {
 }
 ```
 
-Same as Linked List but with backlinks. Allows traversal in both directions (forward and backward).
+Same as Linked List but with backlinks. Allows traversal in both directions
+(forward and backward).
 
-**Head** $\rightarrow$ **[ Null | 2 | $\cdot$ ]** $\leftrightarrow$ **[ $\cdot$ | 4 | $\cdot$]** $\leftrightarrow$ **[ $\cdot$ | 3 | Null ]**
+**Head** $\rightarrow$ **[ Null | 2 | $\cdot$ ]** $\leftrightarrow$ **[ $\cdot$
+| 4 | $\cdot$]** $\leftrightarrow$ **[ $\cdot$ | 3 | Null ]**
 
-To add an item or remove, you must update pointers on *both* links (prev and next). It is slightly more complex than a singly linked list.
+To add an item or remove, you must update pointers on _both_ links (prev and
+next). It is slightly more complex than a singly linked list.
 
 **Overall:**
 
-* Time to access element is linear: **O(n)**
-* Time to insert or remove (if node is known): **O(1)**
-* Add element at start/end (with tail pointer): **O(1)**
+- Time to access element is linear: **O(n)**
+- Time to insert or remove (if node is known): **O(1)**
+- Add element at start/end (with tail pointer): **O(1)**
 
-**Memory:** No unused memory (blocks), but higher overhead per node because you store 2 pointers instead of 1.
+**Memory:** No unused memory (blocks), but higher overhead per node because you
+store 2 pointers instead of 1.
 
 ## Stack (ADT)
 
 ```text
     +     +
-    |     |  
+    |     |
     +-----+
     |  1  |  <-- Top
     +-----+
@@ -98,12 +108,16 @@ To add an item or remove, you must update pointers on *both* links (prev and nex
     +-----+
 ```
 
-A stack is an abstract data type that follows the **last-in-first-out (LIFO)** order. This means that elements can only be inserted or deleted from the top.
-One property of stacks is that they can easily reverse a list, by simply placing in the stack, then retrieving it, it will be reversed, as you'll first take out the (previously) last node, and end up on the (previously) first node.
+A stack is an abstract data type that follows the **last-in-first-out (LIFO)**
+order. This means that elements can only be inserted or deleted from the top.
+One property of stacks is that they can easily reverse a list, by simply placing
+in the stack, then retrieving it, it will be reversed, as you'll first take out
+the (previously) last node, and end up on the (previously) first node.
+
 **4 basic operations can be performed on a stack:**
 
 1. **push(x):** Inserts x at the top of the stack
-2. **pop():** Removes the element at the top
+2. **pop():** Removes and returns the element at the top
 3. **top():** Return the element at the top
 4. **isEmpty()**: Return true if stack is empty
 
@@ -123,11 +137,9 @@ For example:
 2 + 3 | A - B | (P * 2) | (2 + 3) * 4 | (p + q) * (r + s)
 ```
 
-To evaluate an expression we need to define an order of operations
-like for example left to right, or following PEMDAS for mathematical
-expressions
-An prefix expression (aka. polish notation) is defined in this
-form:
+To evaluate an expression we need to define an order of operations like for
+example left to right, or following PEMDAS for mathematical expressions. A
+prefix expression (aka. polish notation) is defined in this form:
 
 ```text
 <operator> <operand> <operand>
@@ -139,17 +151,17 @@ For example:
 + 2 3 | - A B | * P 2 | * 4 + 2 3 | * + p q + r s
 ```
 
-In prefix and postfix form we don't need to specify an order of operations,
-as they don't carry the same ambiguity as the infix notation.
-Postfix notation (aka. reverse polish notation) is defined in this form:
+In prefix and postfix form we don't need to specify an order of operations, as
+they don't carry the same ambiguity as the infix notation. Postfix notation
+(aka. reverse polish notation) is defined in this form:
 
 ```text
 <operand> <operand> <operator>
 ```
 
 This notation was invented with computers in mind, and it's the most efficient
-to parse and evaluate.
-For converting from infix to postfix it is useful to add the implicit parenthesis
+to parse and evaluate. For converting from infix to postfix it is useful to add
+the implicit parenthesis.
 
 ```text
 A * B + C * d - e
@@ -160,7 +172,32 @@ A B * C d * + e -
 ## Queue (ADT)
 
 ```text
+  dequeue                         enqueue
+  <----                           ---->
+        +-----+-----+-----+-----+
+        |  1  |  2  |  3  |  4  |
+        +-----+-----+-----+-----+
+           ^                 ^
+           |                 |
+         Front             Rear
 ```
 
-A queue is an abstract data type just like a stack, but instead of LIFO, it's order is **first-in-first-out (FIFO)**. In this case, operations can only be done to the first element added to the Queue.
-**WIP**
+A queue is an abstract data type just like a stack, but instead of LIFO, its
+order is **first-in-first-out (FIFO)**. In this case, operations can only be
+done to the first element added to the Queue. Insertions happen at the tail
+while removals happen at the head.
+
+This is just like the queue at a supermarket, where you get placed in the back
+of the queue and then wait your turn as people at the front of the queue (who
+got there earlier) get dequeued.
+
+**4 basic operations** can be performed on a queue:
+
+1. **enqueue(x):** Inserts x at the tail of the queue
+2. **dequeue():** Removes and returns the element at the head of the queue
+3. **peek():** Return the element at the head
+4. **isEmpty()**: Return true if queue is empty
+
+All operations above should be performed in O(1). For the array implementation,
+a circular array where incrementing the index at the last position of the array
+wraps it around to the beginning is needed.

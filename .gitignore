@@ -31,4 +31,3 @@ enc_temp_folder
 # Build artifacts
 out/
 build/
-${sourceDir}/
